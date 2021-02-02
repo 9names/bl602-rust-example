@@ -1,0 +1,16 @@
+[package]
+name = "bl602-rust-example"
+version = "0.1.0"
+authors = ["9names"]
+edition = "2018"
+
+[dependencies]
+riscv-rt = "0.8.0"
+bl602-hal = { git = "https://github.com/sipeed/bl602-hal", rev="9c04c971a0affdbe251d611d39ff10d533f48f2b" }
+panic-halt = "0.2.0"
+riscv = "0.6.0"
+embedded-time = "0.10.1"
+nb = "1.0.0"
+
+[profile.release]
+debug = true
