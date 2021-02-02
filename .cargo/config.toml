@@ -1,4 +1,4 @@
-[target.riscv32imac-unknown-none-elf]
+[target.riscv32imc-unknown-none-elf]
 rustflags = [
   "-C", "link-arg=-Tmemory.x",
   "-C", "link-arg=-Tlink.x",
@@ -6,4 +6,4 @@ rustflags = [
 runner = "riscv64-unknown-elf-gdb -q -x openocd.gdb"
 
 [build]
-target = "riscv32imac-unknown-none-elf"
+target = "riscv32imc-unknown-none-elf"
