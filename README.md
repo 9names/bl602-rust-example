@@ -1,6 +1,7 @@
 # BL602 Rust example
 
-A simple example program using the BL602 Rust HAL
+A simple example program using the BL602 Rust HAL, using the serial bootloader so anyone can use Rust on their BL602-based board
+There's no debugger support in this crate - use https://github.com/sipeed/bl602-rust-guide or a standalone debugger if you need that 
 
 ## Try it out!
 
