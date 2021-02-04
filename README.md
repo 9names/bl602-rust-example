@@ -22,8 +22,8 @@ run
 cargo blflash --port /dev/ttyUSB0
 ```
 
-When you see
-INFO  blflash] Success
+When you see  
+INFO  blflash] Success  
 connect to the board with a terminal emulator like putty or minicom
 ```
 minicom -D /dev/ttyUSB0 -b2000000
