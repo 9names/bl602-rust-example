@@ -10,8 +10,6 @@ use hal::{
 };
 use panic_halt as _;
 
-use panic_halt as _;
-
 #[riscv_rt::entry]
 fn main() -> ! {
     let dp = pac::Peripherals::take().unwrap();
@@ -58,17 +56,18 @@ fn main() -> ! {
 
     loop {
         // Okay, now lets have some fun.
-        let led_on_byte_array = [b'L', b'E', b'D', b' ', b'O', b'n', b'\r', b'\n'];
+        let led_on_str = "LEDs on\r\n";
         gpio5.try_set_high().unwrap();
-        for c in led_on_byte_array.iter().cloned() {
+        for c in led_on_str.bytes() {
             serial.try_write(c).ok();
             nb::block!(serial.try_flush()).ok();
         }
         d.try_delay_ms(1000).unwrap();
 
-        let led_off_byte_array = [b'L', b'E', b'D', b' ', b'O', b'f', b'f', b'\r', b'\n'];
+        let led_off_str = "LEDs off\r\n";
         gpio5.try_set_low().unwrap();
-        for c in led_off_byte_array.iter().cloned() {
+
+        for c in led_off_str.bytes() {
             serial.try_write(c).ok();
             nb::block!(serial.try_flush()).ok();
         }
