@@ -7,7 +7,7 @@ There's no debugger support in this crate - use https://github.com/sipeed/bl602-
 
 Grab the toolchain for bl602
 ```
-rustup target add riscv32imc-unknown-none-elf
+rustup target add riscv32imac-unknown-none-elf
 ```
 
 Install cargo-blflash
