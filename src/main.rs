@@ -10,7 +10,8 @@ use hal::{
     serial::*,
 };
 use panic_persist as _;
-
+use bl602_exception as _;
+use core::sync::atomic::{AtomicUsize, Ordering};
 #[riscv_rt::entry]
 fn main() -> ! {
     let dp = pac::Peripherals::take().unwrap();
@@ -69,6 +70,7 @@ fn main() -> ! {
         gpio5.try_set_low().unwrap();
         d.try_delay_ms(1000).unwrap();
 
-        panic!("test");
+        let a = AtomicUsize::new(0);
+        let b = a.fetch_add(1, Ordering::Relaxed);
     }
 }
