@@ -2,6 +2,7 @@
 #![no_main]
 
 use bl602_hal as hal;
+use core::fmt::Write;
 use hal::{
     clock::{Strict, SysclkFreq, UART_PLL_FREQ},
     pac,
@@ -38,17 +39,14 @@ fn main() -> ! {
     let mut gpio5 = parts.pin5.into_pull_down_output();
 
     // Print some characters to let you know we're running!
-    serial.try_write(b'R').ok();
-    nb::block!(serial.try_flush()).ok();
-    serial.try_write(b'u').ok();
-    nb::block!(serial.try_flush()).ok();
-    serial.try_write(b's').ok();
-    nb::block!(serial.try_flush()).ok();
-    serial.try_write(b't').ok();
-    nb::block!(serial.try_flush()).ok();
-    serial.try_write(b'\r').ok();
-    nb::block!(serial.try_flush()).ok();
-    serial.try_write(b'\n').ok();
+    nb::block!(serial.try_write(b'\r')).ok();
+    nb::block!(serial.try_write(b'\n')).ok();
+    nb::block!(serial.try_write(b'R')).ok();
+    nb::block!(serial.try_write(b'U')).ok();
+    nb::block!(serial.try_write(b'S')).ok();
+    nb::block!(serial.try_write(b'T')).ok();
+    nb::block!(serial.try_write(b'\r')).ok();
+    nb::block!(serial.try_write(b'\n')).ok();
     nb::block!(serial.try_flush()).ok();
 
     // Create a blocking delay function based on the current cpu frequency
@@ -56,21 +54,12 @@ fn main() -> ! {
 
     loop {
         // Okay, now lets have some fun.
-        let led_on_str = "LEDs on\r\n";
+        serial.write_str("LEDs on\r\n").unwrap();
         gpio5.try_set_high().unwrap();
-        for c in led_on_str.bytes() {
-            serial.try_write(c).ok();
-            nb::block!(serial.try_flush()).ok();
-        }
         d.try_delay_ms(1000).unwrap();
 
-        let led_off_str = "LEDs off\r\n";
+        serial.write_str("LEDs off\r\n").unwrap();
         gpio5.try_set_low().unwrap();
-
-        for c in led_off_str.bytes() {
-            serial.try_write(c).ok();
-            nb::block!(serial.try_flush()).ok();
-        }
         d.try_delay_ms(1000).unwrap();
     }
 }
