@@ -9,7 +9,7 @@ use hal::{
     prelude::*,
     serial::*,
 };
-use panic_halt as _;
+use panic_persist as _;
 
 #[riscv_rt::entry]
 fn main() -> ! {
@@ -38,6 +38,13 @@ fn main() -> ! {
     // Also set up a pin as GPIO, to blink an LED
     let mut gpio5 = parts.pin5.into_pull_down_output();
 
+    // If we rebooted due to panic, print the panic message
+    if let Some(msg) = panic_persist::get_panic_message_bytes() {
+        for c in msg.iter() {
+            nb::block!(serial.try_write(*c)).ok();
+        }
+    }  
+
     // Print some characters to let you know we're running!
     nb::block!(serial.try_write(b'\r')).ok();
     nb::block!(serial.try_write(b'\n')).ok();
@@ -61,5 +68,7 @@ fn main() -> ! {
         serial.write_str("LEDs off\r\n").unwrap();
         gpio5.try_set_low().unwrap();
         d.try_delay_ms(1000).unwrap();
+
+        panic!("test");
     }
 }

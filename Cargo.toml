@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 riscv-rt = "0.8.0"
 bl602-hal = { git="https://github.com/9names/bl602-hal.git", branch="serial_fifo_fmt" }
-panic-halt = "0.2.0"
+panic-persist = { git="https://github.com/9names/panic-persist.git", branch="bl602" }
 riscv = "0.6.0"
 embedded-time = "0.10.1"
 nb = "1.0.0"
