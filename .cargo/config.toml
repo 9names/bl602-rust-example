@@ -2,6 +2,7 @@
 rustflags = [
   "-C", "link-arg=-Tmemory.x",
   "-C", "link-arg=-Tlink.x",
+  "-C", "link-arg=-Thal_defaults.x",
 ]
 runner = "cargo blflash --port=/dev/ttyUSB0"
 
