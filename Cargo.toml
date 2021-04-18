@@ -12,5 +12,20 @@ riscv = "0.6.0"
 embedded-time = "0.10.1"
 nb = "1.0.0"
 
+# You probably don't want to use a debug build, but lots of people accidentally do
+# give the code at least a low level of optimization
+[profile.dev]
+codegen-units = 1
+lto = true
+opt-level = 1
+
+# Different optimization level for dependencies in debug mode
+# So you can keep the main code more debuggable and still save some space
+[profile.dev.package."*"]
+opt-level = "z"
+
 [profile.release]
-debug = true
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
+# opt-level = "z" # optimize for size instead of speed
