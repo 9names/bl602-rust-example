@@ -5,6 +5,11 @@ There's no debugger support in this crate - use https://github.com/sipeed/bl602-
 
 ## Try it out!
 
+If you don't have Rust and Cargo installed, install the stable toolchain using rustup from https://rustup.rs/
+Rustup will prompt you for toolchain type, install location, etc. The default options are fine, and will work with this project
+
+Once you've got Rust, open a new console/command prompt to complete the reset of the instructions
+
 Grab the toolchain for bl602
 ```
 rustup target add riscv32imac-unknown-none-elf
