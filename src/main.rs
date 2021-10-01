@@ -9,6 +9,8 @@ use hal::{
     prelude::*,
     serial::*,
 };
+use embedded_hal::delay::blocking::DelayMs;
+use embedded_hal::digital::blocking::OutputPin;
 use panic_halt as _;
 
 #[riscv_rt::entry]
@@ -45,12 +47,12 @@ fn main() -> ! {
 
     loop {
         // Toggle the LED on and off once a second. Report LED status over UART
-        gpio5.try_set_high().unwrap();
+        gpio5.set_high().unwrap();
         serial.write_str("LEDs on\r\n").ok();
-        d.try_delay_ms(1000).unwrap();
+        d.delay_ms(1000).unwrap();
 
-        gpio5.try_set_low().unwrap();
+        gpio5.set_low().unwrap();
         serial.write_str("LEDs off\r\n").ok();
-        d.try_delay_ms(1000).unwrap();
+        d.delay_ms(1000).unwrap();
     }
 }
