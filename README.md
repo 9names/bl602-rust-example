@@ -17,7 +17,7 @@ rustup target add riscv32imac-unknown-none-elf
 
 Install cargo-blflash
 ```
-cargo install cargo-blflash
+cargo install --locked cargo-blflash
 ```
 
 Enter bootloader mode on the board by holding the boot button and pressing the en button
