@@ -5,12 +5,12 @@ authors = ["9names"]
 edition = "2018"
 
 [dependencies]
-riscv-rt = "0.8.0"
+riscv-rt = "0.10.0"
 embedded-hal = "=1.0.0-alpha.5"
 bl602-hal = { git = "https://github.com/sipeed/bl602-hal", rev="dfc9946e79ea4dac18be11efce11d0592a8517fb" }
 panic-halt = "0.2.0"
-riscv = "0.6.0"
-embedded-time = "0.10.1"
+riscv = "0.10.0"
+embedded-time = "0.12.1"
 nb = "1.0.0"
 
 # You probably don't want to use a debug build, but lots of people accidentally do
