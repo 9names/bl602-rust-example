@@ -5,7 +5,7 @@ authors = ["9names"]
 edition = "2018"
 
 [dependencies]
-riscv-rt = "0.10.0"
+riscv-rt = "0.11.0"
 embedded-hal = "=1.0.0-alpha.5"
 bl602-hal = { git = "https://github.com/sipeed/bl602-hal", rev="dfc9946e79ea4dac18be11efce11d0592a8517fb" }
 panic-halt = "0.2.0"
