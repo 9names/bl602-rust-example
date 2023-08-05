@@ -9,7 +9,7 @@ riscv-rt = "0.11.0"
 embedded-hal = "=1.0.0-alpha.5"
 bl602-hal = { git = "https://github.com/sipeed/bl602-hal", rev="dfa6556a306f872428e19e9aeacbfc1d072c9d9e" }
 panic-halt = "0.2.0"
-riscv = "0.10.0"
+riscv = { version = "0.10.1", features = ["critical-section-single-hart"] }
 embedded-time = "0.12.1"
 nb = "1.0.0"
 
