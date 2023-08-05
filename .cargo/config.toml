@@ -4,6 +4,13 @@ rustflags = [
   "-C", "link-arg=-Tlink.x",
   "-C", "link-arg=-Thal_defaults.x",
 ]
+
+[target.riscv32imfc-unknown-none-elf]
+rustflags = [
+  "-C", "link-arg=-Tmemory.x",
+  "-C", "link-arg=-Tlink.x",
+  "-C", "link-arg=-Thal_defaults.x",
+]
 runner = "cargo blflash --port=/dev/ttyUSB0"
 
 [build]

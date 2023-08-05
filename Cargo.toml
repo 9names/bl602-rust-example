@@ -19,6 +19,8 @@ nb = "1.0.0"
 codegen-units = 1
 lto = true
 opt-level = 1
+# need this or compiler-builtins breaks when building rust-std
+overflow-checks = false
 
 # Different optimization level for dependencies in debug mode
 # So you can keep the main code more debuggable and still save some space
